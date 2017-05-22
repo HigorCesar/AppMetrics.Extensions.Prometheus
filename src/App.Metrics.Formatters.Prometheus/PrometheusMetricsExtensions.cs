@@ -248,14 +248,14 @@ namespace App.Metrics.Formatters.Prometheus
                                  summary = new Summary()
                                            {
                                                sample_count = (ulong)metric.Value.Histogram.Count,
-                                               sample_sum = metric.Value.Histogram.Sum,
+                                               sample_sum = metric.Value.Histogram.Sum.ToSeconds(metric.DurationUnit),
                                                quantile =
                                                {
-                                                   new Quantile() { quantile = 0.5, value = metric.Value.Histogram.Mean },
-                                                   new Quantile() { quantile = 0.75, value = metric.Value.Histogram.Percentile75 },
-                                                   new Quantile() { quantile = 0.95, value = metric.Value.Histogram.Percentile95 },
+                                                   new Quantile() { quantile = 0.5, value = metric.Value.Histogram.Mean.ToSeconds(metric.DurationUnit) },
+                                                   new Quantile() { quantile = 0.75, value = metric.Value.Histogram.Percentile75.ToSeconds(metric.DurationUnit) },
+                                                   new Quantile() { quantile = 0.95, value = metric.Value.Histogram.Percentile95.ToSeconds(metric.DurationUnit) },
                                                    // new Quantile(){quantile = 0.98, value = metric.Value.Histogram.Percentile98},
-                                                   new Quantile() { quantile = 0.99, value = metric.Value.Histogram.Percentile99 },
+                                                   new Quantile() { quantile = 0.99, value = metric.Value.Histogram.Percentile99.ToSeconds(metric.DurationUnit) },
                                                    // new Quantile(){quantile = 0.999, value = metric.Value.Histogram.Percentile999}
                                                }
                                            },
