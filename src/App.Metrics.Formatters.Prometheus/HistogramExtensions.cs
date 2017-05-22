@@ -27,4 +27,5 @@ namespace App.Metrics.Formatters.Prometheus
                  return value;
             }
         }
+    }
 }

@@ -2,6 +2,7 @@
 // Copyright (c) Allan Hardy. All rights reserved.
 // </copyright>
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -117,7 +118,13 @@ namespace App.Metrics.Formatters.Prometheus
             var result = new List<LabelPair>(tags.Count);
             for (var i = 0; i < tags.Count; i++)
             {
-                result.Add(new LabelPair() { name = tags.Keys[i], value = tags.Values[i] });
+               if (string.Equals(tags.Keys[i],"route",StringComparison.OrdinalIgnoreCase) && tags.Values[i].Contains(' '))
+                {
+                    var values = tags.Values[i].Split(' ');
+                    result.Add(new LabelPair() { name = "method", value = values.First() });
+                    result.Add(new LabelPair() { name = "route", value = values.Last() });
+                    continue;
+                }
             }
 
             return result;
