@@ -1,4 +1,4 @@
-﻿// <copyright file="TimeUnitConversions.cs" company="Allan Hardy">
+// <copyright file="TimeUnitConversions.cs" company="Allan Hardy">
 // Copyright (c) Allan Hardy. All rights reserved.
 // </copyright>
 using System;
@@ -27,5 +27,4 @@ namespace App.Metrics.Formatters.Prometheus
                  return value;
             }
         }
-    }
 }

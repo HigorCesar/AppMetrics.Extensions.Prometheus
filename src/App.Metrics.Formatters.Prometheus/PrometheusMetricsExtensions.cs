@@ -256,7 +256,6 @@ namespace App.Metrics.Formatters.Prometheus
                                                    new Quantile() { quantile = 0.95, value = metric.Value.Histogram.Percentile95.ToSeconds(metric.DurationUnit) },
                                                    // new Quantile(){quantile = 0.98, value = metric.Value.Histogram.Percentile98},
                                                    new Quantile() { quantile = 0.99, value = metric.Value.Histogram.Percentile99.ToSeconds(metric.DurationUnit) },
-                                                   // new Quantile(){quantile = 0.999, value = metric.Value.Histogram.Percentile999}
                                                }
                                            },
                                  label = metric.Tags.ToLabelPairs()
